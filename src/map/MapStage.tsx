@@ -133,7 +133,7 @@ export function MapStage({ onReady, started }: { onReady: () => void; started: b
     })
     attachMap(m)
     m.addControl(new maplibregl.AttributionControl({ compact: false, customAttribution: 'Адреса: 2ГИС' }), 'bottom-right')
-    m.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
+    m.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right')
     m.on('load', () => {
       addEverything(m)
       markReady()
