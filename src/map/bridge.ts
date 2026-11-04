@@ -35,9 +35,9 @@ export const padding = (extra = 0) =>
     ? { left: 16, right: 16, top: 70, bottom: Math.round(innerHeight * 0.5) }
     : { left: Math.min(460, innerWidth * 0.5) + extra, right: 40, top: 80, bottom: 40 }
 
-export function flyToPoint(p: Point, zoom = 15) {
+export function flyToPoint(p: Point, zoom = 15, exact = false) {
   whenReady(() =>
-    map!.flyTo({ center: [p.lon, p.lat], zoom: Math.max(map!.getZoom(), zoom), padding: padding(), duration: reduced() ? 0 : 1100, essential: true }),
+    map!.flyTo({ center: [p.lon, p.lat], zoom: exact ? zoom : Math.max(map!.getZoom(), zoom), padding: padding(), duration: reduced() ? 0 : 1100, essential: true }),
   )
 }
 export function fitPoints(pts: Point[], opts: { pitch?: number; bearing?: number; maxZoom?: number } = {}) {
@@ -113,7 +113,7 @@ export function growHexes(show: boolean) {
     const layer = 'hex'
     const m = map!
     if (!m.getLayer(layer)) return
-    const paint = (s: number) => m.setPaintProperty(layer, 'fill-extrusion-height', ['*', ['get', 'v'], 1500 * s])
+    const paint = (s: number) => m.setPaintProperty(layer, 'fill-extrusion-height', ['*', ['get', 'v'], 1000 * s])
     if (show) m.setLayoutProperty(layer, 'visibility', 'visible')
     if (reduced()) {
       paint(show ? 1 : 0)

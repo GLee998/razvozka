@@ -12,7 +12,7 @@ export function LayerDock() {
     { k: 'stores', kind: 'store', t: 'Ваши точки', n: c.stores },
     { k: 'bc', kind: 'bc', t: 'Бизнес-центры', n: c.bc },
     { k: 'jk', kind: 'jk', t: 'Жилые комплексы', n: layers.jkPlanned ? c.jk : c.jkBuilt },
-    { k: 'super', kind: 'super', t: 'Супермаркеты', n: c.super },
+    { k: 'super', kind: 'super', t: 'Супермаркеты', n: c.super - c.stores },
   ] as const
   return (
     <div className="dock" role="group" aria-label="Слои карты">

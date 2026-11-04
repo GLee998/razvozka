@@ -257,7 +257,7 @@ export function MapStage({ onReady, started }: { onReady: () => void; started: b
       const el = document.createElement('div')
       el.className = 'ring'
       ring.current = new maplibregl.Marker({ element: el }).setLngLat([selected.lon, selected.lat]).addTo(getMap()!)
-      flyToPoint(selected, 14)
+      flyToPoint(selected, useApp.getState().section === 'growth' ? 12.9 : 14, useApp.getState().section === 'growth')
     })
   }, [selected])
 
